@@ -20,7 +20,11 @@ func buildLexicon() map[string][]string {
 	}
 	scanner := bufio.NewScanner(bytes.NewReader(raw))
 	for scanner.Scan() {
-		line := strings.SplitN(scanner.Text(), " ", 2)
+		current := scanner.Text()
+		line := strings.SplitN(current, " ", 2)
+		if len(line) < 2 { //skip empty lines in lexicon
+			continue
+		}
 		lexicon[line[0]] = strings.Fields(line[1])
 	}
 	return lexicon

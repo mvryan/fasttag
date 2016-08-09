@@ -32,15 +32,19 @@ func WordsToSlice(s string) []string {
 	s = StripControlCharacters(s)
 	words := make([]string, 0, len(s))
 	for _, word := range strings.FieldsFunc(s, split) {
-		if strings.HasSuffix(word, ".") {
+		if word == "" { //skip empty strings
+			continue
+		}
+		if len(word) > 1 && strings.HasSuffix(word, ".") { //check for appended period
 			i := strings.Index(word, ".")
-			if i < len(word)-1 {
+			if i < len(word)-1 { //naive check for abbreviations
 				words = append(words, word)
 			} else {
 				words = append(words, word[:len(word)-1])
 				words = append(words, ".")
 			}
-		} else if strings.HasSuffix(word, ",") || strings.HasSuffix(word, ";") || strings.HasSuffix(word, "?") || strings.HasSuffix(word, ":") {
+		} else if len(word) > 1 && (strings.HasSuffix(word, ",") || strings.HasSuffix(word, ";") || strings.HasSuffix(word, "?") || strings.HasSuffix(word, ":") || strings.HasSuffix(word, "!")) {
+			//check for appended punctuation
 			words = append(words, word[:len(word)-1])
 			words = append(words, word[len(word)-1:])
 		} else {

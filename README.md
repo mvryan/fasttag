@@ -7,8 +7,8 @@ This Part of Speech tagger is a Go port of the [fasttag_v2](https://github.com/m
 
 It keeping with the spirit of openness he provided this library dual licensed under both the [LGPLv3](https://www.gnu.org/licenses/lgpl-3.0.en.html) and [Apache2](http://www.apache.org/licenses/LICENSE-2.0) licenses.
 
-##Sample.go
-###Source
+## Sample.go
+### Source
 ```go
 package main
 
@@ -25,7 +25,7 @@ func main() {
         fmt.Println("Parts of Speech: ", pos)
 }
 ```
-###Output
+### Output
 ```
 Hello, world
 Words:  [Hello , world]
